@@ -1,18 +1,9 @@
-name: Docker Image CI
+# Usar una imagen base de Nginx (para un sitio web estático)
+FROM nginx:alpine
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+# Copiar el contenido del sitio web a la carpeta de Nginx
+COPY . /usr/share/nginx/html
 
-jobs:
+# Exponer el puerto 80
+EXPOSE 80
 
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
