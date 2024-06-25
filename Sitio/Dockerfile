@@ -1,9 +1,16 @@
-# Usar una imagen base de Nginx (para un sitio web estático)
+# Utiliza una imagen base ligera de Nginx
 FROM nginx:alpine
 
-# Copiar el contenido del sitio web a la carpeta de Nginx
-COPY . /usr/share/nginx/html
+# Elimina el archivo de configuración predeterminado de Nginx
+RUN rm -rf /usr/share/nginx/html/*
 
-# Exponer el puerto 80
+# Copia los archivos del sitio web al directorio predeterminado de Nginx
+COPY sitio /usr/share/nginx/html
+
+# Exponer el puerto 80 para que el tráfico web pueda entrar al contenedor
 EXPOSE 80
+
+# Comando para iniciar Nginx cuando se inicie el contenedor
+CMD ["nginx", "-g", "daemon off;"]
+
 
