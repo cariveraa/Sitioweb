@@ -5,7 +5,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copia los archivos del sitio web al directorio predeterminado de Nginx
-COPY sitio /usr/share/nginx/html
+COPY Sitio /usr/share/nginx/html
 
 # Exponer el puerto 80 para que el tráfico web pueda entrar al contenedor
 EXPOSE 80
